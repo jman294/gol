@@ -1,3 +1,5 @@
+import time
+
 def neighbors (point):
     x, y = point
     return [(x, y+1),
@@ -28,18 +30,18 @@ def advance (board):
             new.add(point)
     return list(new)
 
-# glider = [(0, 0), (1, -1), (1, -2), (0, -2), (-1, -2)]
-# glider = [(0, 0), (1, 0), (0, -1), (1, -1)]
-# glider = [(0, 0), (1, 1), (2, 2), (3, 3), (4, 4)]
-# glider = [(0, 0), (1, 0), (2, 0), (3, 0), (4, 0), (5, 0), (6, 0), (7, 0)]
-glider = [(0, 0), (0, 2), (3, 0), (1, 3), (2, 3), (3, 3), (4, 3), (4, 2), (4, 1)]
+# board = [(0, 0), (1, -1), (1, -2), (0, -2), (-1, -2)]
+# board = [(0, 0), (1, 0), (0, -1), (1, -1)]
+# board = [(0, 0), (1, 1), (2, 2), (3, 3), (4, 4)]
+# board = [(0, 0), (1, 0), (2, 0), (3, 0), (4, 0), (5, 0), (6, 0), (7, 0)]
+board = [(0, 0), (0, 2), (3, 0), (1, 3), (2, 3), (3, 3), (4, 3), (4, 2), (4, 1)]
 while True:
     for j in range(-20, 20):
         for i in range(-50, 50):
-            if (i, j) in glider:
+            if (i, j) in board:
                 print('0', end='')
             else:
                 print('.', end='')
         print('')
-    glider = advance(glider)
-    input()
+    board = advance(board)
+    time.sleep(.2)
