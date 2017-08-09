@@ -1,4 +1,5 @@
 import time
+import sys
 
 def neighbors (point):
     x, y = point
@@ -33,23 +34,24 @@ def advance (board):
 # board = set([(0, 0), (1, 1), (2, 2), (3, 3), (4, 4)])
 # board = set([(0, 0), (1, 0), (2, 0), (3, 0), (4, 0), (5, 0), (6, 0), (7, 0)])
 # board = set([(0, 0), (0, 2), (3, 0), (1, 3), (2, 3), (3, 3), (4, 3), (4, 2), (4, 1)])
+# board = set([(0, 0), (-50, -50)])
 while True:
-    first = board.pop()
-    board.add(first)
-    ax, ay = first
-    bx, by = first
-    for point in board:
-        x, y = point
-        if x > ax:
-            ax = x
-        if y > ay:
-            ay = y
-        if x < bx:
-            bx = x
-        if y < by:
-            by = y
-    print(bx, ay, ax, by)
-
+    if len(board) != 0:
+        first = board.pop()
+        board.add(first)
+        ax, ay = first
+        bx, by = first
+        for point in board:
+            x, y = point
+            if x > ax:
+                ax = x
+            if y > ay:
+                ay = y
+            if x < bx:
+                bx = x
+            if y < by:
+                by = y
+    print('')
     for y in range(ay, by-1, -1):
         for x in range(bx, ax+1):
             if (x, y) in board:
@@ -60,5 +62,5 @@ while True:
                 print('"', end='')
         print('')
     board = advance(board)
-    # time.sleep(.2)
-    input()
+    time.sleep(.2)
+    # input()
